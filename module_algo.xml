@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_algo" default="compile.module.algo">
+  <dirname property="module.algo.basedir" file="${ant.file.module_algo}"/>
+  
+  <property name="module.jdk.home.algo" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.algo" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.algo" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.algo" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="algo.output.dir" value="${module.algo.basedir}/out/production/algo"/>
+  <property name="algo.testoutput.dir" value="${module.algo.basedir}/out/test/algo"/>
+  
+  <path id="algo.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="algo.module.production.classpath">
+    <path refid="${module.jdk.classpath.algo}"/>
+  </path>
+  
+  <path id="algo.runtime.production.module.classpath">
+    <pathelement location="${algo.output.dir}"/>
+  </path>
+  
+  <path id="algo.module.classpath">
+    <path refid="${module.jdk.classpath.algo}"/>
+    <pathelement location="${algo.output.dir}"/>
+    <pathelement location="${idea.home}/plugins/junit/lib/junit-jupiter-api-5.0.0-M3.jar"/>
+    <pathelement location="${idea.home}/plugins/junit/lib/opentest4j-1.0.0-M1.jar"/>
+  </path>
+  
+  <path id="algo.runtime.module.classpath">
+    <pathelement location="${algo.testoutput.dir}"/>
+    <pathelement location="${algo.output.dir}"/>
+    <pathelement location="${idea.home}/plugins/junit/lib/junit-jupiter-api-5.0.0-M3.jar"/>
+    <pathelement location="${idea.home}/plugins/junit/lib/opentest4j-1.0.0-M1.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.algo">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.algo">
+    <patternset refid="excluded.from.module.algo"/>
+  </patternset>
+  
+  <path id="algo.module.sourcepath">
+    <dirset dir="${module.algo.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  <path id="algo.module.test.sourcepath">
+    <dirset dir="${module.algo.basedir}">
+      <include name="test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.algo" depends="compile.module.algo.production,compile.module.algo.tests" description="Compile module algo"/>
+  
+  <target name="compile.module.algo.production" depends="register.custom.compilers" description="Compile module algo; production classes">
+    <mkdir dir="${algo.output.dir}"/>
+    <javac2 destdir="${algo.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.algo}/javac">
+      <compilerarg line="${compiler.args.algo}"/>
+      <bootclasspath refid="algo.module.bootclasspath"/>
+      <classpath refid="algo.module.production.classpath"/>
+      <src refid="algo.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.algo"/>
+    </javac2>
+    
+    <copy todir="${algo.output.dir}">
+      <fileset dir="${module.algo.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.algo.tests" depends="register.custom.compilers,compile.module.algo.production" description="compile module algo; test classes" unless="skip.tests">
+    <mkdir dir="${algo.testoutput.dir}"/>
+    <javac2 destdir="${algo.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.algo}/javac">
+      <compilerarg line="${compiler.args.algo}"/>
+      <bootclasspath refid="algo.module.bootclasspath"/>
+      <classpath refid="algo.module.classpath"/>
+      <src refid="algo.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.algo"/>
+    </javac2>
+    
+    <copy todir="${algo.testoutput.dir}">
+      <fileset dir="${module.algo.basedir}/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.algo" description="cleanup module">
+    <delete dir="${algo.output.dir}"/>
+    <delete dir="${algo.testoutput.dir}"/>
+  </target>
+</project>
