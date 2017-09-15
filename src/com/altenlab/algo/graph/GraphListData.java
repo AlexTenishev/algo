@@ -23,6 +23,7 @@ public class GraphListData {
         if( pin < length() ) {
             return data.get(pin);
         }
+        return null;
     }
 
     public void remove() {
