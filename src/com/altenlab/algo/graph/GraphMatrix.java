@@ -2,11 +2,11 @@ package com.altenlab.algo.graph;
 
 /** Graph: Adjacency matrix */
 class GraphMatrix implements IGraph {
-    private int[][] matrix;
-    private int numEdge;
-    public int[] Mark;
+    private int[][] matrix; // The edge matrix
+    private int numEdge; // Number of edges
+    public int[] Mark; // The mark array
 
-    public GraphMatrix() {
+    public GraphMatrix() { // Constructors
     }
 
     public GraphMatrix(int n) {
@@ -19,10 +19,6 @@ class GraphMatrix implements IGraph {
         numEdge = 0;
     }
 
-    // The edge matrix
-    // Number of edges
-    // The mark array
-    // Constructors
     public int n() {
         return Mark.length;
     } // # of vertices
