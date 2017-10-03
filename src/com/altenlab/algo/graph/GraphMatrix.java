@@ -82,4 +82,10 @@ class GraphMatrix implements IGraph {
     public int getMark(int v) {
         return Mark[v];
     }
+
+    public void resetAllMarks() {
+        for( int v = 0; v < n(); v++ ) {
+            setMark(v, VisitState.UNVISITED.ordinal());
+        }
+    }
 }

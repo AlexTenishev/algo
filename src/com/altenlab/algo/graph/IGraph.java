@@ -35,4 +35,9 @@ public interface IGraph { // Graph class ADT
      @param v The vertex
      @return The value of the mark */
     public int getMark(int v);
+
+    /**
+     * Set all marks for each vertex to Unvisited
+     */
+    public void resetAllMarks();
 }
