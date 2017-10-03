@@ -3,9 +3,6 @@ package com.altenlab.algo.graph;
 import java.util.LinkedList;
 
 public class Traversal {
-    public enum VisitState {
-        UNVISITED, VISITED
-    }
 
     public interface ITraversalStrategy {
         void preVisit(IGraph g, int vertex);
@@ -130,17 +127,8 @@ public class Traversal {
         }
     }
 
-    /** Reset marks array to unvisited for the Graph
-     *
-     */
-    protected static void resetMarks(IGraph G) {
-        for( int v = 0; v < G.n(); v++ ) {
-            G.setMark(v, VisitState.UNVISITED.ordinal());
-        }
-    }
-
     public static void graphTraverse(IGraph G, ITraversalStrategy s) {
-        resetMarks(G);
+        G.resetAllMarks();
 
         if( !s.isAutonomous() ) {
             for (int v = 0; v < G.n(); v++) {

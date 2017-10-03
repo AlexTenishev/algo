@@ -89,4 +89,9 @@ public class GraphList implements IGraph {
     /** Set/Get the mark value for a vertex */
     public void setMark(int v, int val) { Mark[v] = val; }
     public int getMark(int v) { return Mark[v]; }
+    public void resetAllMarks() {
+        for( int v = 0; v < n(); v++ ) {
+            setMark(v, VisitState.UNVISITED.ordinal());
+        }
+    }
 }
