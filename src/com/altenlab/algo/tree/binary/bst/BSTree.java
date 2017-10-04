@@ -109,9 +109,6 @@ public class BSTree<E extends Comparable<E>> {
                 largestValueNode = largestValueNode.right();
             }
             // set the parents’ Right pointer of largest Value to ∅
-//            System.out.println("Node to remove: "+foundNodes.getNode().element());
-//            System.out.println("parentOfLargest: " + parentOfLargest.element());
-//            System.out.println("largestValueNode: " + largestValueNode.element());
             if( parentOfLargest != foundNodes.getNode() ) {
                 parentOfLargest.setRight(null);
             } else {
