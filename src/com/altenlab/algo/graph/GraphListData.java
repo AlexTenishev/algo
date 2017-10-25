@@ -33,7 +33,11 @@ public class GraphListData {
     }
 
     public void insert(Edge e) {
-        data.add(e);
+        if( pin < length() ) {
+            data.add(pin, e);
+        } else {
+            data.add(e);
+        }
     }
 
     public int currPos() {

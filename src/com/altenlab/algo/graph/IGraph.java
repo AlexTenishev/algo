@@ -1,7 +1,9 @@
 package com.altenlab.algo.graph;
 
+/// TODO: implement iterators as algos of traversal
+
 /** Graph ADT */
-public interface IGraph { // Graph class ADT
+public interface IGraph extends Comparable { // Graph class ADT
     /** Initialize the graph
      @param n The number of vertices */
     public void Init(int n);

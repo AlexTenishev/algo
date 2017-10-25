@@ -46,7 +46,7 @@ public class GraphList implements IGraph {
     /** Set the weight for an edge */
     public void setEdge(int i, int j, int weight) {
         assert weight != 0 : "May not set weight to 0";
-        Edge currEdge = new Edge(j, weight);
+        final Edge currEdge = new Edge(j, weight);
         if (isEdge(i, j)) { // Edge already exists in graph
             vertex[i].remove();
             vertex[i].insert(currEdge);
@@ -55,8 +55,11 @@ public class GraphList implements IGraph {
             numEdge++;
             for (vertex[i].moveToStart();
                  vertex[i].currPos() < vertex[i].length();
-                 vertex[i].next())
-                if (vertex[i].getValue().vertex() > j) break;
+                 vertex[i].next()) {
+                if (vertex[i].getValue().vertex() > j) {
+                    break;
+                }
+            }
             vertex[i].insert(currEdge);
         }
     }
@@ -93,5 +96,70 @@ public class GraphList implements IGraph {
         for( int v = 0; v < n(); v++ ) {
             setMark(v, VisitState.UNVISITED.ordinal());
         }
+    }
+
+
+    @Override
+    public int compareTo(Object other) throws ClassCastException {
+        if( !(other instanceof IGraph) ) {
+            throw new ClassCastException("An IGraph object expected.");
+        }
+        final IGraph otherG = (IGraph) other;
+        if( this.Mark.length != otherG.n() ) {
+            return this.Mark.length < otherG.n() ? -1 : 1;
+        }
+        if( this.numEdge != otherG.e() ) {
+            return numEdge != otherG.e() ? -1 : 1;
+        }
+
+        this.resetAllMarks();
+
+        for (int v = 0; v < vertex.length; v++) {
+            if( getMark(v) == VisitState.UNVISITED.ordinal() ) {
+                this.setMark(v, VisitState.VISITED.ordinal());
+                for( int w = this.first(v); w < this.n(); w = this.next(v, w)) {
+                    if( this.getMark(w) == VisitState.UNVISITED.ordinal() ) {
+                        if( this.weight(v, w) < otherG.weight(v,w) ) {
+                            return -1;
+                        } else if( this.weight(v, w) > otherG.weight(v,w) ) {
+                            return 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        return 0;
+    }
+
+    @Override
+    public boolean equals(Object other) throws ClassCastException {
+        if( !(other instanceof IGraph) ) {
+            throw new ClassCastException("An IGraph object expected.");
+        }
+        final IGraph otherG = (IGraph) other;
+        if( this.Mark.length != otherG.n() ) {
+            return false;
+        }
+        if( this.numEdge != otherG.e() ) {
+            return false;
+        }
+
+        this.resetAllMarks();
+
+        for (int v = 0; v < vertex.length; v++) {
+            if( getMark(v) == VisitState.UNVISITED.ordinal() ) {
+                this.setMark(v, VisitState.VISITED.ordinal());
+                for( int w = this.first(v); w < this.n(); w = this.next(v, w)) {
+                    if( this.getMark(w) == VisitState.UNVISITED.ordinal() ) {
+                        if( this.weight(v, w) != otherG.weight(v,w) ) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 }

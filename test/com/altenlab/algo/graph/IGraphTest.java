@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IGraphTest {
     private ArrayList<IGraph> graphs;
-    int[][] sample_graph = {
+    private int[][] sample_graph = {
         {0, 4}, {0, 1},
         {1, 0}, {1, 3}, {1, 4},
         {2, 4},
@@ -19,6 +19,18 @@ class IGraphTest {
         {6, 5},
         {7, 7}
     };
+
+    private int[][] sample_graph2 = {
+            // A B C D E F
+            // 0 1 2 3 4 5
+            {0, 2}, {0, 4},
+            {1, 2}, {1, 5},
+            {2, 0}, {2, 1}, {2, 3}, {2, 5},
+            {3, 2}, {3, 5},
+            {4, 0}, {4, 5},
+            {5, 1}, {5, 2}, {5, 3}, {5, 4}
+    };
+
     @BeforeEach
     void setUp() {
         graphs = new ArrayList<>();
@@ -87,6 +99,21 @@ class IGraphTest {
 
     @Test
     void getMark() {
+    }
+
+    @Test
+    void testEquals() {
+        assertEquals(graphs.get(0), graphs.get(0));
+        assertEquals(graphs.get(1), graphs.get(1));
+
+        assertEquals(graphs.get(0), graphs.get(1));
+
+        final int[] edge = sample_graph[3];
+        graphs.get(0).setEdge(edge[0], edge[1], 2);
+        assertNotEquals(graphs.get(0), graphs.get(1));
+
+        graphs.get(0).delEdge(edge[0], edge[1]);
+        assertNotEquals(graphs.get(0), graphs.get(1));
     }
 
 }
