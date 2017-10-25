@@ -4,25 +4,36 @@ import java.util.LinkedList;
 
 public class Traversal {
 
+    //FIXME: redo logic, reimplement traverse, get rid of isAutonomous wtf!
     public interface ITraversalStrategy {
         void preVisit(IGraph g, int vertex);
         void postVisit(IGraph g, int vertex);
+        void traverse(IGraph g);
         void traverse(IGraph g, int vertex);
-        boolean isAutonomous(); // whether we need outer loop or not
+    }
+
+    public static abstract class BasicTraverse implements ITraversalStrategy {
+        @Override
+        public void traverse(IGraph g) {
+            g.resetAllMarks();
+
+            for (int v = 0; v < g.n(); v++) {
+                if (g.getMark(v) == VisitState.UNVISITED.ordinal()) {
+                    traverse(g, v);
+                }
+            }
+        }
     }
 
     // also, topological sort is DFS but vertices marked on postVisit, not on preVisit
-    public static class DepthFirstSearch implements ITraversalStrategy {
-        @Override
-        public boolean isAutonomous() {
-            return false;
-        }
+    public static class DepthFirstSearch extends BasicTraverse {
         @Override
         public void preVisit(IGraph g, int vertex) {
         }
         @Override
         public void postVisit(IGraph g, int vertex) {
         }
+
         @Override
         public void traverse(IGraph g, int vertex) {
             preVisit(g, vertex); // Take appropriate action
@@ -36,11 +47,7 @@ public class Traversal {
         }
     }
 
-    public static class BreadthFirstSearch implements ITraversalStrategy {
-        @Override
-        public boolean isAutonomous() {
-            return false;
-        }
+    public static class BreadthFirstSearch extends BasicTraverse {
         @Override
         public void preVisit(IGraph g, int vertex) {
         }
@@ -74,10 +81,6 @@ public class Traversal {
         public boolean hasSucceeded() { return isTraversed && isSucceded; }
 
         @Override
-        public boolean isAutonomous() {
-            return true;
-        }
-        @Override
         public void preVisit(IGraph g, int vertex) {
         }
 
@@ -87,14 +90,15 @@ public class Traversal {
 
         @Override
         public void traverse(IGraph g, int _vertex) {
+            // no op
+        }
+        @Override
+        public void traverse(IGraph g) {
             isTraversed = false;
             isSucceded = false;
             LinkedList<Integer> queue = new LinkedList<Integer>();
             int[] count = new int[g.n()];
             int v;
-//            for( v=0; v < g.n(); v++) {
-//                count[v] = 0; // Initialize
-//            }
             for( v = 0; v < g.n(); ++v ) {      // Process every edge
                 for( int w = g.first(v); w < g.n(); w = g.next(v, w) ) {
                     count[w]++; // Add to v2’s prereq count
@@ -127,17 +131,7 @@ public class Traversal {
         }
     }
 
-    public static void graphTraverse(IGraph G, ITraversalStrategy s) {
-        G.resetAllMarks();
-
-        if( !s.isAutonomous() ) {
-            for (int v = 0; v < G.n(); v++) {
-                if (G.getMark(v) == VisitState.UNVISITED.ordinal()) {
-                    s.traverse(G, v);
-                }
-            }
-        } else {
-            s.traverse(G, -1);
-        }
+    public static void graphTraverse(IGraph g, ITraversalStrategy s) {
+        s.traverse(g);
     }
 }
