@@ -249,7 +249,7 @@ public class GraphSearch {
                 if( minHeap.isEmpty() ) {
                     return result;
                 }
-                ExtEdge edge = minHeap.poll(); // Next cheapest
+                final ExtEdge edge = minHeap.poll(); // Next cheapest
                 final int v = edge.vertex();
                 final int u = edge.vertexTo();
                 if( aTree.differ(v, u) ) { // If in different classes

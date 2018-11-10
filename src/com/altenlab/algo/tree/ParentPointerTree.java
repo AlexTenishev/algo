@@ -81,4 +81,34 @@ public class ParentPointerTree {
         }
         return curr;
     }
+    /** This version of FIND not only returns the root of the current node,
+     * but also makes all ancestors of the current node point to the root. */
+    public Integer betterFind(Integer curr) {
+       if( treesets[curr] == null ) {
+           return curr; // At root
+       }
+       treesets[curr] = betterFind(treesets[curr]);
+
+       return treesets[curr];
+    }
+
+    /** This version of FIND not only returns the root of the current node,
+     * but also makes all ancestors of the current node point to the root. */
+    public Integer betterFindIterative(Integer curr) {
+        Integer next = curr;
+        while( treesets[next] != null ) {
+            next = treesets[next];
+        }
+        final Integer newVal = next;
+        next = curr;
+        while( treesets[next] != null ) {
+            next = treesets[next];
+            treesets[next] = newVal;
+        }
+        return next;
+    }
+//    https://www.ida.liu.se/opendsa/OpenDSA/Books/TDDD86F15/html/UnionFind.html#UnionFindPRO
+//    https://opendsa-server.cs.vt.edu/ODSA/Books/CS3/html/UnionFind.html (see Weighted Union)
+//    https://www.geeksforgeeks.org/binary-search-tree-insert-parent-pointer/
+//    https://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-tree-set-2-using-parent-pointer/
 }
