@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 public class Traversal {
 
-    //FIXME: redo logic, reimplement traverse, get rid of isAutonomous wtf!
     public interface ITraversalStrategy {
         void preVisit(IGraph g, int vertex);
         void postVisit(IGraph g, int vertex);
