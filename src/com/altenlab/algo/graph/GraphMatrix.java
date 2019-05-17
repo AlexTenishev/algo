@@ -1,7 +1,7 @@
 package com.altenlab.algo.graph;
 
 /** Graph: Adjacency matrix */
-class GraphMatrix extends BaseGraphImpl {
+public class GraphMatrix extends BaseGraphImpl {
     private int[][] matrix; // The edge matrix
 
     public GraphMatrix(int n) {
