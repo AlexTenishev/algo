@@ -10,32 +10,6 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BreadthFirstTest {
-    class BreadthFirstVisitor implements GraphVertexVisitor {
-        private int[] visitedVertexes;
-        private int counter;
-
-        @Override
-        public void onStart(IGraph g) {
-            visitedVertexes = new int[g.n()];
-            counter = 0;
-        }
-
-        @Override
-        public void preVisit(IGraph g, int vertex) {
-            visitedVertexes[counter] = vertex;
-            counter++;
-        }
-
-        @Override
-        public void postVisit(IGraph g, int vertex) {
-            // no op
-        }
-
-        public int[] getVisited() {
-            return visitedVertexes;
-        }
-    }
-
     @Test
     void testBreadthFirstTraverse() {
         int[][] sample_graph = {

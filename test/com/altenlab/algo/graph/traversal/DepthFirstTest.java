@@ -8,31 +8,6 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DepthFirstTest {
-    class DepthFirstVisitor implements GraphVertexVisitor {
-        private int[] visitedVertexes;
-        private int counter;
-
-        @Override
-        public void onStart(IGraph g) {
-            visitedVertexes = new int[g.n()];
-            counter = 0;
-        }
-
-        @Override
-        public void preVisit(IGraph g, int vertex) {
-            visitedVertexes[counter] = vertex;
-            counter++;
-        }
-
-        @Override
-        public void postVisit(IGraph g, int vertex) {
-        }
-
-        public int[] getVisited() {
-            return visitedVertexes;
-        }
-    }
-
     @Test
     void testDepthFirstTraversal() {
         int[][] sample_graph = {
