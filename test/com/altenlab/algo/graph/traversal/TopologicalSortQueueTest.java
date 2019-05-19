@@ -8,32 +8,6 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TopologicalSortQueueTest {
-    class TopologicalSortVisitor implements GraphVertexVisitor  {
-        private int[] visitedVertexes;
-        private int counter;
-
-        @Override
-        public void onStart(IGraph g) {
-            visitedVertexes = new int[g.n()];
-            counter = 0;
-        }
-
-        @Override
-        public void preVisit(IGraph g, int vertex) {
-            visitedVertexes[counter] = vertex;
-            counter++;
-        }
-
-        @Override
-        public void postVisit(IGraph g, int vertex) {
-            //no op
-        }
-
-        public int[] getVisited() {
-            return visitedVertexes;
-        }
-    }
-
     @Test
     void traverse() {
         int[][] sample_graph = {
@@ -59,7 +33,7 @@ class TopologicalSortQueueTest {
 
 //        System.out.println("");
         int[] expected = { 0, 1, 2, 5, 3, 4, 6 };
-        TopologicalSortVisitor visitor = new TopologicalSortVisitor();
+        TopologicalSortPreVisitor visitor = new TopologicalSortPreVisitor();
         TopologicalSortQueue tsq = new TopologicalSortQueue();
         for( int g = 0; g < graphs.size(); ++g ) {
             tsq.traverse(graphs.get(g), visitor);

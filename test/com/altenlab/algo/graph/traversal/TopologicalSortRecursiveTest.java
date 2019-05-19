@@ -10,34 +10,6 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TopologicalSortRecursiveTest {
-    class TopologicalSortVisitor implements GraphVertexVisitor {
-        private int[] visitedVertexes;
-        private int counter;
-
-        @Override
-        public void onStart(IGraph g) {
-            visitedVertexes = new int[g.n()];
-            counter = 0;
-        }
-
-        @Override
-        public void preVisit(IGraph g, int vertex) {
-        }
-
-        //FIXME: wtf, why is the logic of traversal is in test?
-        // note that this is postVisit, not preVisit
-        @Override
-        public void postVisit(IGraph g, int vertex) {
-            visitedVertexes[counter] = vertex;
-            counter++;
-        }
-
-        public int[] getVisited() {
-            return visitedVertexes;
-        }
-    }
-
-
     @Test
     void testTraverse() {
         int[][] sample_graph = {
@@ -63,7 +35,7 @@ class TopologicalSortRecursiveTest {
 
         System.out.println("");
         int[] expected = { 6, 4, 3, 5, 1, 2, 0 };
-        TopologicalSortVisitor visitor = new TopologicalSortVisitor();
+        TopologicalSortPostVisitor visitor = new TopologicalSortPostVisitor();
         TopologicalSortRecursive ts = new TopologicalSortRecursive();
         for( int g = 0; g < graphs.size(); ++g ) {
             ts.traverse(graphs.get(g), visitor);
