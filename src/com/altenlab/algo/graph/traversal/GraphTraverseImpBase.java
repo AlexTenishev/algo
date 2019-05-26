@@ -5,7 +5,7 @@ import com.altenlab.algo.graph.VisitState;
 
 public abstract class GraphTraverseImpBase implements GraphTraversalStrategy {
     @Override
-    public void traverse(IGraph g, GraphVertexVisitor visitor) {
+    public boolean traverse(IGraph g, GraphVertexVisitor visitor) {
         g.resetAllMarks();
         if( visitor != null ) {
             visitor.onStart(g);
@@ -16,5 +16,6 @@ public abstract class GraphTraverseImpBase implements GraphTraversalStrategy {
                 traverse(g, v, visitor);
             }
         }
+        return true;
     }
 }
