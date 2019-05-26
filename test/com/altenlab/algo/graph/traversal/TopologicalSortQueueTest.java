@@ -11,17 +11,20 @@ class TopologicalSortQueueTest {
     @Test
     void traverse() {
         int[][] sample_graph = {
-                {0,1},{0,2},
-                {1, 3}, {1, 4}, {1, 5},
-                {2, 3},
-                {3, 4},
-                {4, 6}
+                // A B C D E F G
+                // 0 1 2 3 4 5 6
+                {0,1},{0,2}, // A->B, A->C
+                {1, 3}, {1, 4}, {1, 5}, // B->D, B->E, B->F
+                {2, 3}, // C->D
+                {3, 4}, // D->E
+                {4, 6} // E->G
         };
 
         ArrayList<IGraph> graphs = new ArrayList<>();
         // init graph
         graphs.add(new GraphMatrix(7));
         graphs.add(new GraphList(7));
+
         for( int i = 0; i < sample_graph.length; ++i ) {
             for( int g = 0; g < graphs.size(); ++g ) {
                 final int[] edge = sample_graph[i];
@@ -32,19 +35,23 @@ class TopologicalSortQueueTest {
         }
 
 //        System.out.println("");
+        //                J1 J2 J3 J6 J4 J5 J7
+        //                 A  B  C  F  D  E  G
         int[] expected = { 0, 1, 2, 5, 3, 4, 6 };
-        TopologicalSortPreVisitor visitor = new TopologicalSortPreVisitor();
+        GraphVertexPreVisitor visitor = new GraphVertexPreVisitor();
         TopologicalSortQueue tsq = new TopologicalSortQueue();
         for( int g = 0; g < graphs.size(); ++g ) {
-            tsq.traverse(graphs.get(g), visitor);
+            final boolean success =  tsq.traverse(graphs.get(g), visitor);
 //            System.out.println("");
 //            System.out.print("visited: ");
-//            for( int vis : topologicalSortQueue.getVisited()) {
+//            for( int vis : visitor.getVisited()) {
 //                System.out.print(vis + ", ");
 //            }
+//            System.out.println("");
 
+            assertTrue(success);
+            assertTrue(visitor.isComplete());
             assertArrayEquals(expected, visitor.getVisited());
-            assertTrue(tsq.hasSucceeded());
         }
     }
 

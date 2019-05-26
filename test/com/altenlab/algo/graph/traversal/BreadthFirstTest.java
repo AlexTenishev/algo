@@ -35,11 +35,13 @@ class BreadthFirstTest {
             }
         }
 
+        //                   A  C  E  B  D  F
         int[] expectedBFS = {0, 2, 4, 1, 3, 5};
         BreadthFirst bfs = new BreadthFirst();
-        BreadthFirstVisitor visitor = new BreadthFirstVisitor();
+        GraphVertexPreVisitor visitor = new GraphVertexPreVisitor();
         for( int g = 0; g < graphs.size(); ++g ) {
             bfs.traverse(graphs.get(g), visitor);
+            assertTrue(visitor.isComplete());
             assertArrayEquals(expectedBFS, visitor.getVisited());
         }
     }

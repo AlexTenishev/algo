@@ -6,18 +6,23 @@ import com.altenlab.algo.graph.IGraph;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TopologicalSortRecursiveTest {
     @Test
-    void testTraverse() {
+    void traverse() {
         int[][] sample_graph = {
-                {0,1},{0,2},
-                {1, 3}, {1, 4}, {1, 5},
-                {2, 3},
-                {3, 4},
-                {4, 6}
+                // A B C D E F G
+                // 0 1 2 3 4 5 6
+                {0,1},{0,2}, // A->B, A->C
+                {1, 3}, {1, 4}, {1, 5}, // B->D, B->E, B->F
+                {2, 3}, // C->D
+                {3, 4}, // D->E
+                {4, 6} // E->G
         };
 
         ArrayList<IGraph> graphs = new ArrayList<>();
@@ -33,18 +38,19 @@ class TopologicalSortRecursiveTest {
             }
         }
 
-        System.out.println("");
+//        System.out.println("");
         int[] expected = { 6, 4, 3, 5, 1, 2, 0 };
-        TopologicalSortPostVisitor visitor = new TopologicalSortPostVisitor();
+        GraphVertexPostVisitor visitor = new GraphVertexPostVisitor();
         TopologicalSortRecursive ts = new TopologicalSortRecursive();
         for( int g = 0; g < graphs.size(); ++g ) {
             ts.traverse(graphs.get(g), visitor);
 //            System.out.println("");
-//            for( int vis : topologicalSearchRecursive.getVisited()) {
+//            for( int vis : visitor.getVisited()) {
 //                System.out.print(vis + ", ");
 //            }
 //            System.out.println("");
 
+            assertTrue(visitor.isComplete());
             assertArrayEquals(expected, visitor.getVisited());
         }
     }

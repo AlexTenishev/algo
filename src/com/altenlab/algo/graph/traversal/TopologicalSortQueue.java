@@ -6,20 +6,13 @@ import java.util.LinkedList;
 
 ///FIXME: describe when how it is used
 public class TopologicalSortQueue extends GraphTraverseImpBase {
-    private boolean isTraversed = false;
-    private boolean isSucceded = false;
-
-    public boolean hasSucceeded() { return isTraversed && isSucceded; }
-
     @Override
     public void traverse(IGraph g, int vertex, GraphVertexVisitor visitor) {
         // not used
     }
 
     @Override
-    public void traverse(IGraph g, GraphVertexVisitor visitor) {
-        isTraversed = false;
-        isSucceded = false;
+    public boolean traverse(IGraph g, GraphVertexVisitor visitor) {
         if( visitor != null ) {
             visitor.onStart(g);
         }
@@ -54,8 +47,10 @@ public class TopologicalSortQueue extends GraphTraverseImpBase {
                     queue.add(w);
                 }
             }
+            if( visitor != null ) {
+                visitor.postVisit(g, v);
+            }
         }
-        isTraversed = true;
-        isSucceded = queue.isEmpty();
+        return queue.isEmpty();
     }
 }

@@ -34,11 +34,12 @@ class DepthFirstTest {
         }
 
         int[] expectedDFS = {0, 2, 1, 5, 3, 4};
-        DepthFirstVisitor visitor = new DepthFirstVisitor();
-        DepthFirst dfs = new DepthFirst();
+        final GraphVertexPreVisitor visitor = new GraphVertexPreVisitor();
+        final DepthFirst dfs = new DepthFirst();
         for( int g = 0; g < graphs.size(); ++g ) {
             dfs.traverse(graphs.get(g), visitor);
             final int[] visited = visitor.getVisited();
+            assertTrue(visitor.isComplete());
             assertArrayEquals(expectedDFS, visited);
         }
     }
