@@ -6,7 +6,7 @@ import com.altenlab.algo.graph.VisitState;
 /**
  * Also, topological sort is DFS but vertices marked on postVisit, not on preVisit
  */
-public class DepthFirst extends GraphTraverseImpBase {
+public class DepthFirst extends GraphTraverseImplBase {
 
     @Override
     public void traverse(IGraph g, int vertex, GraphVertexVisitor visitor) {
