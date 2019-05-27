@@ -3,7 +3,7 @@ package com.altenlab.algo.graph.traversal;
 import com.altenlab.algo.graph.IGraph;
 import com.altenlab.algo.graph.VisitState;
 
-public abstract class GraphTraverseImpBase implements GraphTraversalStrategy {
+public abstract class GraphTraverseImplBase implements GraphTraversalStrategy {
     @Override
     public boolean traverse(IGraph g, GraphVertexVisitor visitor) {
         g.resetAllMarks();

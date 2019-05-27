@@ -5,7 +5,7 @@ import com.altenlab.algo.graph.VisitState;
 
 import java.util.LinkedList;
 
-public class BreadthFirst extends GraphTraverseImpBase {
+public class BreadthFirst extends GraphTraverseImplBase {
     @Override
     public void traverse(IGraph g, int vertex, GraphVertexVisitor visitor) {
         LinkedList<Integer> queue = new LinkedList<Integer>();

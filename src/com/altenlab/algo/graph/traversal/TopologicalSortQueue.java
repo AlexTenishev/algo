@@ -5,7 +5,7 @@ import com.altenlab.algo.graph.IGraph;
 import java.util.LinkedList;
 
 ///FIXME: describe when how it is used
-public class TopologicalSortQueue extends GraphTraverseImpBase {
+public class TopologicalSortQueue extends GraphTraverseImplBase {
     @Override
     public void traverse(IGraph g, int vertex, GraphVertexVisitor visitor) {
         // not used
@@ -13,20 +13,20 @@ public class TopologicalSortQueue extends GraphTraverseImpBase {
 
     @Override
     public boolean traverse(IGraph g, GraphVertexVisitor visitor) {
+        g.resetAllMarks();
         if( visitor != null ) {
             visitor.onStart(g);
         }
         LinkedList<Integer> queue = new LinkedList<Integer>();
-        int[] count = new int[g.n()];
         int v;
         for( v = 0; v < g.n(); ++v ) {      // Process every edge
             for( int w = g.first(v); w < g.n(); w = g.next(v, w) ) {
-                count[w]++; // Add to v2’s prereq count
+                g.setMark(w,g.getMark(w) + 1); // Add to v2’s prereq count
             }
         }
 
         for( v = 0; v < g.n(); ++v ) { // Initialize Queue
-            if( count[v] == 0 ) { // V has no prerequisites
+            if( g.getMark(v) == 0 ) { // V has no prerequisites
                 queue.add(v);
             }
         }
@@ -40,10 +40,10 @@ public class TopologicalSortQueue extends GraphTraverseImpBase {
             if( visitor != null ) {
                 visitor.preVisit(g, v);
             }
-            System.out.print(v+", ");
+//            System.out.print(v+", ");
             for( int w = g.first(v); w < g.n(); w = g.next(v, w)) {
-                count[w]--; // One less prerequisite
-                if( count[w] == 0 ) {// This vertex is now free
+                g.setMark(w, g.getMark(w) - 1); // One less prerequisite
+                if( g.getMark(w) == 0 ) {// This vertex is now free
                     queue.add(w);
                 }
             }
