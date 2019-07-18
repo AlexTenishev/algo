@@ -25,7 +25,7 @@ import java.util.PriorityQueue;
 public class DijkstraFast extends SearchStrategyBaseImpl {
     @Override
     public int[] search(IGraph g, int start) {
-        int[] distances = new int[g.n()];
+        final int[] distances = new int[g.n()];
         init(g, distances);
 
         int v; // The current vertex
