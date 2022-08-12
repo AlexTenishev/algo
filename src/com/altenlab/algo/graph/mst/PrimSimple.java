@@ -16,27 +16,29 @@ public class PrimSimple implements BuildStrategy {
         }
         distances[start] = 0;
 
-        final int[] V = new int[g.n()];
+        // array element lastVisited[i] stores the previously
+        // visited vertex that is closest to vertex i
+        final int[] lastVisited = new int[g.n()];
         for (int w = g.first(start); w < g.n(); w = g.next(start, w)) {
-            V[w] = w;
+            lastVisited[w] = w;
         }
         g.resetAllMarks();
         for( int i = 0; i < g.n(); ++i ) { // Process the vertices
             final int v = MinVertex.find(g, distances);
-            // FIXME: we need to check for NOT_FOUND value
+            if( v == MinVertex.NOT_FOUND || distances[v] == Integer.MAX_VALUE ) {
+                // not possible to build, or unreachable
+                return null;
+            }
             g.setMark(v, VisitState.VISITED.ordinal());
-            if( v != start ) {
-                result.setEdge(V[v], v, g.weight(V[v], v));
-                result.setEdge(v, V[v], g.weight(V[v], v));
-            }
-            // FIXME: revalidate this return
-            if (distances[v] == Integer.MAX_VALUE) {
-                return null; // Unreachable
-            }
+            // FIXME!!!
+//            if( v != start ) {
+//                result.setEdge(lastVisited[v], v, g.weight(V[v], v));
+//                result.setEdge(v, lastVisited[v], g.weight(V[v], v));
+//            }
             for (int w = g.first(v); w < g.n(); w = g.next(v, w)) {
                 if( distances[w] > g.weight(v, w) ) {
                     distances[w] = g.weight(v, w);
-                    V[w] = v;
+                    lastVisited[w] = v;
                 }
             }
         }

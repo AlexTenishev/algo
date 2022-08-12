@@ -8,7 +8,7 @@ public abstract class BaseGraphImpl implements IGraph {
         Init(n);
     }
 
-    public void Init(int n) {
+    protected void Init(int n) {
         Mark = new int[n];
         numEdge = 0;
     }
