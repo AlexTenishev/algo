@@ -177,7 +177,8 @@ public class Arrays {
 
     public static int searchBound2(final int[] data, final Predicate<Integer> predicate, int lo, int hi) {
         while( lo < hi ) {
-            int mid = (lo + hi) / 2;
+            // this helps to prevent rintime error for overflow of integer capacity for indices arithmetics
+            int mid = (lo + (hi - lo) ) / 2;
 
             if( !predicate.test(data[mid]) ) {
                 lo = mid + 1;

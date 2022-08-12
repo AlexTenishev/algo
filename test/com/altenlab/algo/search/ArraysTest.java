@@ -2,7 +2,6 @@ package com.altenlab.algo.search;
 
 import org.junit.jupiter.api.Test;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
@@ -58,6 +57,11 @@ class ArraysTest {
         data.add(new DataSet(new int[]{ 1, 2, 3, 3, 23}, 23, 4));
         data.add(new DataSet(new int[]{ 1, 2, 3, 5, 23}, 3, 2));
         data.add(new DataSet(new int[]{ 1, 2, 2, 3, 4, 23}, 3, 3));
+
+        data.add(new DataSet(new int[]{ 2, 4, 6, 8, 10}, 1, -1));
+        data.add(new DataSet(new int[]{ 2, 4, 6, 8, 10}, 3, -2));
+        data.add(new DataSet(new int[]{ 2, 4, 6, 8, 10}, 5, -3));
+        data.add(new DataSet(new int[]{ 2, 4, 6, 8, 10}, 11, 4));
         for(final DataSet dataSet : data) {
             final int foundIndex = Arrays.binarySearch(dataSet.data, dataSet.key);
             assertEquals(dataSet.expectedIndex, foundIndex);

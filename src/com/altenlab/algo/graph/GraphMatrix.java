@@ -8,7 +8,8 @@ public class GraphMatrix extends BaseGraphImpl {
         super(n);
     }
 
-    public void Init(int n) {
+    @Override
+    protected void Init(int n) {
         super.Init(n);
         matrix = new int[n][n];
     }

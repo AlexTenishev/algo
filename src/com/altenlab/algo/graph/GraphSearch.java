@@ -109,113 +109,113 @@ public class GraphSearch {
 //        }
 //    }
 
-    public static class MSTPrim implements IMSTStrategy {
-        public IGraph build(IGraph g, final int start) {
-            IGraph result = new GraphList(g.n());
+    // public static class MSTPrim implements IMSTStrategy {
+    //     public IGraph build(IGraph g, final int start) {
+    //         IGraph result = new GraphList(g.n());
 
-            final int[] distances = new int[g.n()];
-            for( int i = 0; i< g.n(); ++i ) {   // Initialize
-                distances[i] = Integer.MAX_VALUE;
-            }
-            distances[start] = 0;
+    //         final int[] distances = new int[g.n()];
+    //         for( int i = 0; i< g.n(); ++i ) {   // Initialize
+    //             distances[i] = Integer.MAX_VALUE;
+    //         }
+    //         distances[start] = 0;
 
-            final int[] V = new int[g.n()];
-            for (int w = g.first(start); w < g.n(); w = g.next(start, w)) {
-                V[w] = w;
-            }
-            g.resetAllMarks();
-            for( int i = 0; i < g.n(); ++i ) { // Process the vertices
-                int v = minVertex(g, distances);
-                g.setMark(v, VisitState.VISITED.ordinal());
-                if( v != start ) {
-                    result.setEdge(V[v], v, g.weight(V[v], v));
-                    result.setEdge(v, V[v], g.weight(V[v], v));
-                }
-                if (distances[v] == Integer.MAX_VALUE) {
-                    return null; // Unreachable
-                }
-                for (int w = g.first(v); w < g.n(); w = g.next(v, w)) {
-                    if( distances[w] > g.weight(v, w) ) {
-                        distances[w] = g.weight(v, w);
-                        V[w] = v;
-                    }
-                }
-            }
+    //         final int[] V = new int[g.n()];
+    //         for (int w = g.first(start); w < g.n(); w = g.next(start, w)) {
+    //             V[w] = w;
+    //         }
+    //         g.resetAllMarks();
+    //         for( int i = 0; i < g.n(); ++i ) { // Process the vertices
+    //             int v = minVertex(g, distances);
+    //             g.setMark(v, VisitState.VISITED.ordinal());
+    //             if( v != start ) {
+    //                 result.setEdge(V[v], v, g.weight(V[v], v));
+    //                 result.setEdge(v, V[v], g.weight(V[v], v));
+    //             }
+    //             if (distances[v] == Integer.MAX_VALUE) {
+    //                 return null; // Unreachable
+    //             }
+    //             for (int w = g.first(v); w < g.n(); w = g.next(v, w)) {
+    //                 if( distances[w] > g.weight(v, w) ) {
+    //                     distances[w] = g.weight(v, w);
+    //                     V[w] = v;
+    //                 }
+    //             }
+    //         }
 
-            return result;
-        }
+    //         return result;
+    //     }
 
-        /**
-         * Because this scan is done |V| times, and because each edge requires a constant-time update to D,
-         * the total cost for this approach is O(|V|^2 + |E|) = O(|V|^2), because |E| is in O(|V|^2).
-         * @param g - Graph implementation
-         * @param distances - array of distances
-         * @return vertex with minimal distance
-         */
-        private int minVertex(IGraph g, final int[] distances) {
-            int v = -1;
-            for( int i = 0; i < g.n(); i++ ) {
-                if( g.getMark(i) == VisitState.UNVISITED.ordinal() ) {
-                    if( v == -1 ) {
-                        v = i;
-                    } else if( distances[i] < distances[v] ) {
-                        v = i;
-                    }
+    //     /**
+    //      * Because this scan is done |V| times, and because each edge requires a constant-time update to D,
+    //      * the total cost for this approach is O(|V|^2 + |E|) = O(|V|^2), because |E| is in O(|V|^2).
+    //      * @param g - Graph implementation
+    //      * @param distances - array of distances
+    //      * @return vertex with minimal distance
+    //      */
+    //     private int minVertex(IGraph g, final int[] distances) {
+    //         int v = -1;
+    //         for( int i = 0; i < g.n(); i++ ) {
+    //             if( g.getMark(i) == VisitState.UNVISITED.ordinal() ) {
+    //                 if( v == -1 ) {
+    //                     v = i;
+    //                 } else if( distances[i] < distances[v] ) {
+    //                     v = i;
+    //                 }
 
-                }
-            }
-            return v;
-        }
-    }
+    //             }
+    //         }
+    //         return v;
+    //     }
+    // }
 
-    public static class MSTPrimPQ implements IMSTStrategy {
+    // public static class MSTPrimPQ implements IMSTStrategy {
 
-        public IGraph build(IGraph g, final int start) {
-            IGraph result = new GraphList(g.n());
+    //     public IGraph build(IGraph g, final int start) {
+    //         IGraph result = new GraphList(g.n());
 
-            final int[] distances = new int[g.n()];
-            for( int i = 0; i< g.n(); ++i ) {   // Initialize
-                distances[i] = Integer.MAX_VALUE;
-            }
-            distances[start] = 0;
+    //         final int[] distances = new int[g.n()];
+    //         for( int i = 0; i< g.n(); ++i ) {   // Initialize
+    //             distances[i] = Integer.MAX_VALUE;
+    //         }
+    //         distances[start] = 0;
 
-            final int[] V = new int[g.n()];
-            for (int w = g.first(start); w < g.n(); w = g.next(start, w)) {
-                V[w] = w;
-            }
-            g.resetAllMarks();
-            int v;
-            // Min Heap for the edges
-            PriorityQueue<Edge> minHeap = new PriorityQueue<Edge>(g.e());
-            minHeap.add(new Edge(start, 0)); // Initial vertex
-            for( int i = 0; i < g.n(); ++i ) { // Process the vertices
-                do {
-                    if( minHeap.isEmpty() ) {
-                        return result; // no more paths to consider
-                    }
-                    v = minHeap.poll().vertex(); // Get position
-                } while( g.getMark(v) == VisitState.VISITED.ordinal() );
+    //         final int[] V = new int[g.n()];
+    //         for (int w = g.first(start); w < g.n(); w = g.next(start, w)) {
+    //             V[w] = w;
+    //         }
+    //         g.resetAllMarks();
+    //         int v;
+    //         // Min Heap for the edges
+    //         PriorityQueue<Edge> minHeap = new PriorityQueue<Edge>(g.e());
+    //         minHeap.add(new Edge(start, 0)); // Initial vertex
+    //         for( int i = 0; i < g.n(); ++i ) { // Process the vertices
+    //             do {
+    //                 if( minHeap.isEmpty() ) {
+    //                     return result; // no more paths to consider
+    //                 }
+    //                 v = minHeap.poll().vertex(); // Get position
+    //             } while( g.getMark(v) == VisitState.VISITED.ordinal() );
 
-                g.setMark(v, VisitState.VISITED.ordinal());
-                if( v != start ) {
-                    result.setEdge(V[v], v, g.weight(V[v], v));
-                    result.setEdge(v, V[v], g.weight(V[v], v));
-                }
-                if (distances[v] == Integer.MAX_VALUE) {
-                    return null; // Unreachable
-                }
-                for (int w = g.first(v); w < g.n(); w = g.next(v, w)) {
-                    if( distances[w] > g.weight(v, w) ) {
-                        distances[w] = g.weight(v, w);
-                        V[w] = v;
-                        minHeap.add(new Edge(w, distances[w]));
-                    }
-                }
-            }
+    //             g.setMark(v, VisitState.VISITED.ordinal());
+    //             if( v != start ) {
+    //                 result.setEdge(V[v], v, g.weight(V[v], v));
+    //                 result.setEdge(v, V[v], g.weight(V[v], v));
+    //             }
+    //             if (distances[v] == Integer.MAX_VALUE) {
+    //                 return null; // Unreachable
+    //             }
+    //             for (int w = g.first(v); w < g.n(); w = g.next(v, w)) {
+    //                 if( distances[w] > g.weight(v, w) ) {
+    //                     distances[w] = g.weight(v, w);
+    //                     V[w] = v;
+    //                     minHeap.add(new Edge(w, distances[w]));
+    //                 }
+    //             }
+    //         }
 
-            return result;
-        }
-    }
+    //         return result;
+    //     }
+    // }
 
     /**
      * Kruskal’s algorithm is dominated by the time required to process the edges.
@@ -256,7 +256,7 @@ public class GraphSearch {
             return result;
         }
     }
-    
+
 //    public static int[] getShortestPathDijkstra(IGraph g, int from) {
 //        final DijkstraSearch search = new DijkstraSearch();
 //        return search.search(g, from);
@@ -267,18 +267,19 @@ public class GraphSearch {
 //        return search.search(g, from);
 //    }
 
-    public static IGraph getMSTPrim(IGraph g) {
-        final MSTPrim prim = new MSTPrim();
-        return prim.build(g, 0);
-    }
-
-    public static IGraph getMSTPrimPQ(IGraph g) {
-        final MSTPrimPQ prim = new MSTPrimPQ();
-        return prim.build(g, 0);
-    }
-
-    public static IGraph getMSTKruskal(IGraph g) {
-        final MSTKruskal kruskal = new MSTKruskal();
-        return kruskal.build(g, 0);
-    }
+    //FIXME
+//    public static IGraph getMSTPrim(IGraph g) {
+//        final MSTPrim prim = new MSTPrim();
+//        return prim.build(g, 0);
+//    }
+//
+//    public static IGraph getMSTPrimPQ(IGraph g) {
+//        final MSTPrimPQ prim = new MSTPrimPQ();
+//        return prim.build(g, 0);
+//    }
+//
+//    public static IGraph getMSTKruskal(IGraph g) {
+//        final MSTKruskal kruskal = new MSTKruskal();
+//        return kruskal.build(g, 0);
+//    }
 }

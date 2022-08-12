@@ -7,7 +7,9 @@ public class GraphList extends BaseGraphImpl {
         super(n);
         Init(n);
     }
-    public void Init(int n) {
+
+    @Override
+    protected void Init(int n) {
         super.Init(n);
         vertex = new GraphListData[n];
         for( int i = 0; i < n; i++ ) {
