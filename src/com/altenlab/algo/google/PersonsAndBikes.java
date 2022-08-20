@@ -21,6 +21,7 @@ package com.altenlab.algo.google;
 
 /**
  * See also: https://www.geeksforgeeks.org/find-whether-path-two-cells-matrix/
+ * See also: graph Breadth First Search traverse on graph, CoordinatesToGraphHelper class impl
  */
 public class PersonsAndBikes {
 

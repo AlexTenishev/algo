@@ -2,6 +2,7 @@ package com.altenlab.algo.graph;
 
 /// TODO: implement iterators as algos of traversal
 
+// FIMXE: get the interface without weights
 /** Graph ADT */
 public interface IGraph extends Comparable { // Graph class ADT
     /** @return The number of vertices */
