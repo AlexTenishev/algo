@@ -1,8 +1,6 @@
 package com.altenlab.algo.fb.greedy;
 
-import com.altenlab.algo.fb.greedy.SlowSums;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class SlowSumsTest {

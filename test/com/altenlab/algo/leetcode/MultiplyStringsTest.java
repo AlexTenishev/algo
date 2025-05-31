@@ -1,8 +1,6 @@
 package com.altenlab.algo.leetcode;
 
-import com.altenlab.algo.leetcode.MultiplyStrings;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class MultiplyStringsTest {

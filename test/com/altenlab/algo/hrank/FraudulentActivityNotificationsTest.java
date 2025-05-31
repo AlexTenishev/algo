@@ -1,16 +1,13 @@
 package com.altenlab.algo.hrank;
 
-import com.altenlab.algo.hrank.FraudulentActivityNotifications;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class FraudulentActivityNotificationsTest {

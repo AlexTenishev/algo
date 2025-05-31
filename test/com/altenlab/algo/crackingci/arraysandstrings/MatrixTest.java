@@ -1,5 +1,4 @@
 package com.altenlab.algo.crackingci.arraysandstrings;
-
 import com.altenlab.algo.arraysandstrings.Matrix;
 import org.junit.jupiter.api.Test;
 

@@ -1,8 +1,6 @@
 package com.altenlab.algo.fb.tree;
 
-import com.altenlab.algo.fb.tree.NumberOfVisibleNodes;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class NumberOfVisibleNodesTest {

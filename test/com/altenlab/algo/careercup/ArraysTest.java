@@ -1,6 +1,4 @@
 package com.altenlab.algo.careercup;
-
-import com.altenlab.algo.careercup.Arrays;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
