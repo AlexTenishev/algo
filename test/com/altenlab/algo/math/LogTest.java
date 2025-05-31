@@ -1,5 +1,6 @@
 package com.altenlab.algo.math;
 
+import com.altenlab.algo.math.Log;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

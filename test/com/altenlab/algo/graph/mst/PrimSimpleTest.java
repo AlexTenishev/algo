@@ -3,6 +3,7 @@ package com.altenlab.algo.graph.mst;
 import com.altenlab.algo.graph.GraphList;
 import com.altenlab.algo.graph.GraphMatrix;
 import com.altenlab.algo.graph.IGraph;
+import com.altenlab.algo.graph.mst.PrimSimple;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

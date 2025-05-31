@@ -1,7 +1,7 @@
 package com.altenlab.algo.crackingci.arraysandstrings;
+
 import com.altenlab.algo.arraysandstrings.Unique;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class UniqueTest {
