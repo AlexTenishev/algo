@@ -1,5 +1,6 @@
 package com.altenlab.algo.search;
 
+import com.altenlab.algo.search.Arrays;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

@@ -1,5 +1,6 @@
 package com.altenlab.algo.math;
 
+import com.altenlab.algo.math.DivUtil;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

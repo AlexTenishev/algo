@@ -1,12 +1,9 @@
 package com.altenlab.algo.fb.arrays;
 
-import com.sun.org.apache.xpath.internal.operations.Equals;
+import com.altenlab.algo.fb.arrays.Arrays;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 

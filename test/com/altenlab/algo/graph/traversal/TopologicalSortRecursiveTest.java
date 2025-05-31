@@ -3,12 +3,11 @@ package com.altenlab.algo.graph.traversal;
 import com.altenlab.algo.graph.GraphList;
 import com.altenlab.algo.graph.GraphMatrix;
 import com.altenlab.algo.graph.IGraph;
+import com.altenlab.algo.graph.traversal.GraphVertexPostVisitor;
+import com.altenlab.algo.graph.traversal.TopologicalSortRecursive;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
 

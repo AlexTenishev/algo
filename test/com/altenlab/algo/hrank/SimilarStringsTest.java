@@ -1,5 +1,6 @@
 package com.altenlab.algo.hrank;
 
+import com.altenlab.algo.hrank.SimilarStrings;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

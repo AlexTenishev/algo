@@ -1,5 +1,6 @@
 package com.altenlab.algo.heap;
 
+import com.altenlab.algo.heap.Heap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

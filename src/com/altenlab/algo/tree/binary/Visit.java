@@ -1,7 +1,5 @@
 package com.altenlab.algo.tree.binary;
 
-import com.altenlab.algo.tree.binary.IBinNode;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;

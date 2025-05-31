@@ -1,5 +1,6 @@
 package com.altenlab.algo.hrank;
 
+import com.altenlab.algo.hrank.ClosestNumbers;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

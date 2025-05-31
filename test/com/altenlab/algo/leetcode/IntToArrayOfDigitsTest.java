@@ -1,5 +1,6 @@
 package com.altenlab.algo.leetcode;
 
+import com.altenlab.algo.leetcode.IntToArrayOfDigits;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

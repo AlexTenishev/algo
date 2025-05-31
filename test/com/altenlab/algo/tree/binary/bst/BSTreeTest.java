@@ -1,6 +1,7 @@
 package com.altenlab.algo.tree.binary.bst;
 
 import com.altenlab.algo.tree.binary.IBinNode;
+import com.altenlab.algo.tree.binary.bst.BSTree;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,6 @@
 package com.altenlab.algo.hrank;
 
+import com.altenlab.algo.hrank.AbsoluteElementSums;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;

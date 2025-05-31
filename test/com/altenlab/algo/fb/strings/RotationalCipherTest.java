@@ -1,5 +1,6 @@
 package com.altenlab.algo.fb.strings;
 
+import com.altenlab.algo.fb.strings.RotationalCipher;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

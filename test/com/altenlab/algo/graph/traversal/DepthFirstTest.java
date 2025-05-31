@@ -1,6 +1,8 @@
 package com.altenlab.algo.graph.traversal;
 
-import com.altenlab.algo.graph.*;
+import com.altenlab.algo.graph.GraphList;
+import com.altenlab.algo.graph.GraphMatrix;
+import com.altenlab.algo.graph.IGraph;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
