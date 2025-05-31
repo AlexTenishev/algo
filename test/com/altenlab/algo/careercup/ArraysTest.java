@@ -1,6 +1,6 @@
 package com.altenlab.algo.careercup;
-import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArraysTest {

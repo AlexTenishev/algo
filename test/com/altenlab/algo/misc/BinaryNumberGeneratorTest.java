@@ -1,5 +1,6 @@
 package com.altenlab.algo.misc;
 
+import com.altenlab.algo.misc.BinaryNumberGenerator;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

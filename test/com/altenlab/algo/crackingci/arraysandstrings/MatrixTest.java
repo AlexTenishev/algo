@@ -1,7 +1,7 @@
 package com.altenlab.algo.crackingci.arraysandstrings;
+
 import com.altenlab.algo.arraysandstrings.Matrix;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class MatrixTest {
