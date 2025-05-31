@@ -1,5 +1,8 @@
 package com.altenlab.algo.tree.binary;
 
+import com.altenlab.algo.tree.binary.CartesianBTree;
+import com.altenlab.algo.tree.binary.IBinNode;
+import com.altenlab.algo.tree.binary.Visit;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

@@ -1,5 +1,6 @@
 package com.altenlab.algo.hrank;
 
+import com.altenlab.algo.hrank.ConnectedCells;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

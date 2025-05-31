@@ -1,4 +1,4 @@
-package com.altenlab.algo.crackingci.arraysandstrings.linkedlist;
+package com.altenlab.algo.arraysandstrings.linkedlist;
 
 public class LinkedList {
     // 2.1. Write code to remove duplicates from an unsorted linked list.

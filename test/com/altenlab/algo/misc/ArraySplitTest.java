@@ -1,5 +1,6 @@
 package com.altenlab.algo.misc;
 
+import com.altenlab.algo.misc.ArraySplit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

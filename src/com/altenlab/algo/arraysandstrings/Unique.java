@@ -1,4 +1,4 @@
-package com.altenlab.algo.crackingci.arraysandstrings;
+package com.altenlab.algo.arraysandstrings;
 
 import java.util.ArrayList;
 import java.util.Arrays;

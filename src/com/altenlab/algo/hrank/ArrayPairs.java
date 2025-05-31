@@ -1,7 +1,6 @@
 package com.altenlab.algo.hrank;
 
 import com.altenlab.algo.tree.binary.CartesianBTree;
-import com.altenlab.algo.tree.binary.SegmentTree;
 
 import java.util.*;
 

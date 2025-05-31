@@ -1,5 +1,6 @@
 package com.altenlab.algo.hrank;
 
+import com.altenlab.algo.hrank.RepetitiveKSums;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

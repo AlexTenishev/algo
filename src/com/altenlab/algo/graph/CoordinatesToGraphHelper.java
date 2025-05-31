@@ -1,12 +1,11 @@
 package com.altenlab.algo.graph;
 
-import javafx.util.Pair;
+import com.altenlab.algo.util.Pair;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.Callable;
 
 /**
  * Inspired by: https://www.geeksforgeeks.org/find-whether-path-two-cells-matrix/

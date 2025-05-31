@@ -1,5 +1,6 @@
 package com.altenlab.algo.leetcode;
 
+import com.altenlab.algo.leetcode.StockProblem;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

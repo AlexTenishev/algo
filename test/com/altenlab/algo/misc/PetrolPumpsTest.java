@@ -15,5 +15,4 @@ class PetrolPumpsTest {
         final int start2 = pumps.getFirstStartPoint(sample2);
         assertEquals(2, start2);
     }
-
 }

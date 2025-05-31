@@ -1,9 +1,7 @@
 package com.altenlab.algo.hrank;
 
+import com.altenlab.algo.hrank.ArrayPairs;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 

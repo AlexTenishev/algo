@@ -1,6 +1,6 @@
 package com.altenlab.algo.leetcode;
 
-import javafx.util.Pair;
+import com.altenlab.algo.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Collections;

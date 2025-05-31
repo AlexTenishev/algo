@@ -1,6 +1,9 @@
 package com.altenlab.algo.graph;
 
-import javafx.util.Pair;
+import com.altenlab.algo.graph.CoordinatesToGraphHelper;
+import com.altenlab.algo.graph.IGraph;
+import com.altenlab.algo.graph.IMatrixSafeCheck;
+import com.altenlab.algo.util.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

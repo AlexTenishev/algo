@@ -3,6 +3,7 @@ package com.altenlab.algo.graph.search;
 import com.altenlab.algo.graph.GraphList;
 import com.altenlab.algo.graph.GraphMatrix;
 import com.altenlab.algo.graph.IGraph;
+import com.altenlab.algo.graph.search.DijkstraSimple;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

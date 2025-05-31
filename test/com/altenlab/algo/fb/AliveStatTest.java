@@ -1,8 +1,6 @@
 package com.altenlab.algo.fb;
 
 import java.util.ArrayList;
-import com.altenlab.algo.fb.AliveStat;
-import com.sun.tools.javac.util.Assert;
 
 import static org.junit.jupiter.api.Assertions.*;
 

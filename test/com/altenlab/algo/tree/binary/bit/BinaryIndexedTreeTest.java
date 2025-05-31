@@ -1,5 +1,6 @@
 package com.altenlab.algo.tree.binary.bit;
 
+import com.altenlab.algo.tree.binary.bit.BinaryIndexedTree;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
