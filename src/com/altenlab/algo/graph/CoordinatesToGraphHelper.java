@@ -71,7 +71,6 @@ public class CoordinatesToGraphHelper {
         }
         return graph;
     }
-
     public static class SimpleGraph {
         final int verticesCount;
         final List<List<Integer>> adjacencyList;

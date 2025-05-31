@@ -1,6 +1,5 @@
 package com.altenlab.algo.tree.binary;
 
-import com.altenlab.algo.tree.binary.SegmentTreeImpl;
 import org.junit.jupiter.api.Test;
 
 class SegmentTreeImplTest {

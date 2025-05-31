@@ -1,8 +1,6 @@
 package com.altenlab.algo.fb.arrays;
 
-import com.altenlab.algo.fb.arrays.Arrays;
 import org.junit.jupiter.api.Test;
-
 import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
