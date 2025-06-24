@@ -5,6 +5,6 @@ package com.altenlab.algo;
  */
 public class MySample {
     public static int foo() {
-        return 1;
+        return 2;
     }
 }
